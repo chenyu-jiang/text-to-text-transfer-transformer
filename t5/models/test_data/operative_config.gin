@@ -13,7 +13,7 @@ d_ff = 64
 d_kv = 64
 d_model = 32
 dropout_rate = 0.0
-MIXTURE_NAME = 'c4_v020_unsupervised'
+MIXTURE_NAME = 'c4_v301_unsupervised'
 num_heads = 2
 num_layers = 2
 

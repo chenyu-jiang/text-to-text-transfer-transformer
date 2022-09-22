@@ -103,8 +103,8 @@ TaskRegistry.add(
 _c4_config_suffixes = ["", ".noclean", ".realnewslike", ".webtextlike"]
 for config_suffix in _c4_config_suffixes:
   TaskRegistry.add(
-      "c4{name}_v020_unsupervised".format(name=config_suffix.replace(".", "_")),
-      source=seqio.TfdsDataSource(tfds_name="c4/en{config}:2.2.0".format(
+      "c4{name}_v301_unsupervised".format(name=config_suffix.replace(".", "_")),
+      source=seqio.TfdsDataSource(tfds_name="c4/en{config}:3.0.1".format(
           config=config_suffix)),
       preprocessors=[
           functools.partial(
@@ -160,7 +160,7 @@ for b in tfds.text.glue.Glue.builder_configs.values():
 # =============================== CNN DailyMail ================================
 TaskRegistry.add(
     "cnn_dailymail_v002",
-    source=seqio.TfdsDataSource(tfds_name="cnn_dailymail:3.1.0"),
+    source=seqio.TfdsDataSource(tfds_name="cnn_dailymail:3.3.0"),
     preprocessors=[
         functools.partial(
             preprocessors.summarize,
@@ -413,7 +413,7 @@ vocab = seqio.SentencePieceVocabulary(sentencepiece_model_file)
 
 seqio.TaskRegistry.add(
     "c4_prefix_lm_objective_encoder_decoder_architecture",
-    source=seqio.TfdsDataSource(tfds_name="c4/en:2.2.0"),
+    source=seqio.TfdsDataSource(tfds_name="c4/en:3.0.1"),
     preprocessors=[
         functools.partial(
             preprocessors.rekey, key_map={

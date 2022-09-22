@@ -104,14 +104,14 @@ MixtureRegistry.add(
 #  - we seem to overtrain on super_glue_record - don't know why
 MixtureRegistry.add(
     "en_mix",
-    [("c4_v020_unsupervised", t5.data.rate_unsupervised)] +
+    [("c4_v301_unsupervised", t5.data.rate_unsupervised)] +
     _glue_tasks + _super_glue_tasks +
     ["squad_v010_allanswers"],
     default_rate=t5.data.rate_num_examples)
 
 MixtureRegistry.add(
     "all_equal",
-    _supervised_tasks + ["c4_v020_unsupervised"],
+    _supervised_tasks + ["c4_v301_unsupervised"],
     default_rate=1.,
 )
 
@@ -131,18 +131,18 @@ def _dedupe(name):
 
 MixtureRegistry.add(
     "all_proportional",
-    [(t, _dedupe(t)) for t in _supervised_tasks + ["c4_v020_unsupervised"]],
+    [(t, _dedupe(t)) for t in _supervised_tasks + ["c4_v301_unsupervised"]],
 )
 
 # all_mix is the same as all_proportional except it uses rate_unsupervised
-# for c4_v020_unsupervised. This is useful if you want to specify a specific
+# for c4_v301_unsupervised. This is useful if you want to specify a specific
 # rate for the unsupervised task which is different from the global value for
 # rate_num_examples.maximum
 # If you use this task, you should set a maximum rate value via gin e.g.
 # --gin_param="t5.data.rate_num_examples.maximum = 1e6"
 MixtureRegistry.add(
     "all_mix",
-    ([("c4_v020_unsupervised", t5.data.rate_unsupervised)] +
+    ([("c4_v301_unsupervised", t5.data.rate_unsupervised)] +
      [(t, _dedupe(t)) for t in _supervised_tasks]),
 )
 
@@ -159,7 +159,7 @@ def assign_weight_or_rate_num_examples(name):
 
 
 for task_name in _finetune_tasks:
-  task_names = set(_supervised_tasks + ["c4_v020_unsupervised"])
+  task_names = set(_supervised_tasks + ["c4_v301_unsupervised"])
 
   # Special case to treat all GLUE tasks as one task.
   if task_name == "glue_v002_proportional":
