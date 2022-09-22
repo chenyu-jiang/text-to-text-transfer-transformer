@@ -15,18 +15,15 @@ parser.add_argument('--num-examples', type=int, default=1000000, help='number of
 args = parser.parse_args()
 
 if args.output_path is None:
-    args.output_path = "./" + args.task_or_mixture + ".json"
+    args.output_path = "./" + args.task_or_mixture + ".jsonl"
 
-
-
-
-dataset = seqio.get_mixture_or_task("large_supervised_proportional").get_dataset(
+dataset = seqio.get_mixture_or_task(args.task_or_mixture).get_dataset(
         sequence_length={'inputs':4096,'targets':4096}, # Extranous length to capture all data
         num_epochs=1,
         copy_pretokenized=True,
         shuffle=True
 )
-with open(f"./large_supervised_proportional.jsonl", "w") as f:
+with open(args.output_path, "w") as f:
     for i, example in tqdm(enumerate(dataset.as_numpy_iterator()), total=args.num_examples):
         raw_input_sequence = example['inputs_pretokenized'].decode()
         raw_target_sequence = example['targets_pretokenized'].decode()
