@@ -134,6 +134,11 @@ MixtureRegistry.add(
     [(t, _dedupe(t)) for t in _supervised_tasks + ["c4_v301_unsupervised"]],
 )
 
+MixtureRegistry.add(
+    "supervised_proportional",
+    [(t, _dedupe(t)) for t in _supervised_tasks],
+)
+
 # all_mix is the same as all_proportional except it uses rate_unsupervised
 # for c4_v301_unsupervised. This is useful if you want to specify a specific
 # rate for the unsupervised task which is different from the global value for

@@ -8,7 +8,7 @@ from tqdm import tqdm
 import argparse
 
 parser = argparse.ArgumentParser(description='Load dataset and save as json')
-parser.add_argument('--task-or-mixture', type=str, default="large_supervised_proportional", help='dataset or mixture to load')
+parser.add_argument('--task-or-mixture', type=str, default="supervised_proportional", help='dataset or mixture to load')
 parser.add_argument('--output-path', type=str, help='output directory')
 parser.add_argument('--num-examples', type=int, default=1000000, help='number of examples to load')
 
