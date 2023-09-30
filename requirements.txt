@@ -4,3 +4,4 @@ babel
 editdistance
 sacrebleu
 rouge_score
+jsonlines

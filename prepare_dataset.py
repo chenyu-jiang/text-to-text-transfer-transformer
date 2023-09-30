@@ -18,7 +18,7 @@ if args.output_path is None:
     args.output_path = "./" + args.task_or_mixture + ".jsonl"
 
 dataset = seqio.get_mixture_or_task(args.task_or_mixture).get_dataset(
-        sequence_length={'inputs':4096,'targets':4096}, # Extranous length to capture all data
+        sequence_length={'inputs':40960,'targets':40960}, # Extranous length to capture all data
         num_epochs=1,
         copy_pretokenized=True,
         shuffle=True
